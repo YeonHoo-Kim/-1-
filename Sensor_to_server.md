@@ -128,7 +128,7 @@ void loop() {
 </pre>
 
 ### Server code
-- js file code
+- js file code   
 Amazon EC2 server에서 실행되고 있는 js 파일로 http://ec2-34-229-114-134.compute-1.amazonaws.com:8000/stream 주소를 입력할 경우 stream.html 파일을 열어서 연결 시켜준다. 그리고 데이터에 변동 사항이 있을 경우 연결되어 있는 모든 client들에게 업데이트 시켜준다.   
 <pre>
 <code>
@@ -165,7 +165,7 @@ app.listen(HTTP_PORT, ()=> console.log(`HTTP server listening at ${HTTP_PORT}`))
 </pre>
    
    
-- html file code
+- html file code   
 js파일에서 열어 주는 html 파일이다. '34.229.114.134' ip주소와 '8080' port번호를 이용해 소켓을 열어서 카메라 센서의 데이터를 받는다.   
 받은 데이터의 형식이 blob형태이기에 이를 image 형태로 변환해준다.   
 <pre>
