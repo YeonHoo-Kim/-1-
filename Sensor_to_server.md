@@ -15,8 +15,8 @@ Send data from sensor to server
 - ESP32_CAM code(.ino 파일, )
 기존 Arduino의 예제 ESP32->Camera->CameraWebSever 코드 응용
 (기존 예시 코드 : 동일한 wifi 공유기 내에서만 접근 가능 -> 변형된 코드 : Amazon EC2 server을 이용해 어디서든 접근 가능  )
-======================
-#include "esp_camera.h" // 카메라 사용을 위한 기본 헤더 파일
+
+>#include "esp_camera.h" // 카메라 사용을 위한 기본 헤더 파일
 #include <WiFi.h> //wifi 연결을 위한 헤더 파일
 #include <ArduinoWebsockets.h> // Amazon EC2에 열어둔 서버의 소켓으로 보내기 위한 헤더 파일
 
@@ -120,5 +120,5 @@ void loop() {
   client.sendBinary((const char*) fb->buf, fb->len);
   esp_camera_fb_return(fb);
 }
-======================
+
   
