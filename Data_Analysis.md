@@ -35,7 +35,7 @@
 ### Solutions
 
 정부에서는 국가적 차원으로 이를 해결할 방법 중 하나로 ''**차고지증명제**''를 추진중이다.
-
+<img src="https://github.com/YeonHoo-Kim/Capston_Design1_Projects/blob/master/images/불법주차1.jpg" width="1000" height="400">
 
 
 ##### 차고지증명제란?
