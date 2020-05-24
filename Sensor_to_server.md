@@ -160,15 +160,13 @@ wsServer.on('connection', (ws, req)=>{
 app.get('/stream',(req,res)=>res.sendFile(path.resolve(__dirname, './stream.html')));
 
 app.listen(HTTP_PORT, ()=> console.log(`HTTP server listening at ${HTTP_PORT}`));
-</code>
-</pre>
+```
    
    
 - html file code   
 js파일에서 열어 주는 html 파일이다. '34.229.114.134' ip주소와 '8080' port번호를 이용해 소켓을 열어서 카메라 센서의 데이터를 받는다.   
 받은 데이터의 형식이 blob형태이기에 이를 image 형태로 변환해준다.   
-<pre>
-<code>
+```
 <html>
     <head>
         <title>Stream</title>
