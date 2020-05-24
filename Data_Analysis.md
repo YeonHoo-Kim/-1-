@@ -14,7 +14,7 @@
 
 밖에 나와서 길을 걷다보면 도로에 주차되어있는 차량들을 많이 볼 수 있다. 얼핏 보면 그냥 주차되어있는 차량이구나 하고 지나갈 수도 있지만 심각한 경우 도로의 차선 하나를 점거해버리거나 길목이 매우 좁아져서 심각한 교통체증을 일으킬 수도 있음이 분명하다.
 
-[이미지1], [이미지2]
+<img src="https://github.com/YeonHoo-Kim/Capston_Design1_Projects/blob/master/images/불법주차1.jpg" width="400" height="400"><img src="https://github.com/YeonHoo-Kim/Capston_Design1_Projects/blob/master/images/불법주차2.jpg" width="400" height="400">
 
  (기사-https://www.hankyung.com/society/article/201906140123i)
 
@@ -24,7 +24,7 @@
 
 밖의 도로에서의 불법주차가 있다면 각자의 집 주변인 주택가에서의 불법주차도 있기마련, 주택가에서 발생하는 불법주차로 인한 실태를 알아보자. 주택밀집지역에서는 주차공간이 턱없이 부족해서 일부 주민이 본인 집 앞 골목길에 주차한다면 골목길 통행난이 발생해 분명 문제가 발생할 수 밖에 없다.
 
-[이미지3], 
+<img src="https://github.com/YeonHoo-Kim/Capston_Design1_Projects/blob/master/images/불법주차3.jpg" width="400" height="400">
 
 (기사-http://news.imaeil.com/Society/2019093016352035265)
 
