@@ -130,8 +130,7 @@ void loop() {
 ### Server code
 - js file code   
 Amazon EC2 server에서 실행되고 있는 js 파일로 http://ec2-34-229-114-134.compute-1.amazonaws.com:8000/stream 주소를 입력할 경우 stream.html 파일을 열어서 연결 시켜준다. 그리고 데이터에 변동 사항이 있을 경우 연결되어 있는 모든 client들에게 업데이트 시켜준다.   
-<pre>
-<code>
+```
 const path = require('path');
 const express = require('express');
 const WebSocket = require('ws');
@@ -193,5 +192,4 @@ js파일에서 열어 주는 html 파일이다. '34.229.114.134' ip주소와 '80
         </script>
     </body>
 </html>
-</code>
-</pre>
+```
