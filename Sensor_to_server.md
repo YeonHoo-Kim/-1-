@@ -12,9 +12,9 @@ Send data from sensor to server
 
 ### Sensor code 
 
-- ESP32_CAM code(.ino 파일, h파일 생략)
-기존 Arduino의 예제 ESP32->Camera->CameraWebSever 코드 응용
-(기존 예시 코드 : 동일한 wifi 공유기 내에서만 접근 가능 -> 변형된 코드 : Amazon EC2 server을 이용해 어디서든 접근 가능  )
+- ESP32_CAM code(.ino 파일, h파일 생략)   
+기존 Arduino의 예제 ESP32->Camera->CameraWebSever 코드 응용   
+(기존 예시 코드 : 동일한 wifi 공유기 내에서만 접근 가능 -> 변형된 코드 : Amazon EC2 server을 이용해 어디서든 접근 가능)   
 
 <pre>
 <code>
@@ -30,7 +30,7 @@ Send data from sensor to server
 const char* ssid = "****";
 const char* password = "****";
 const char* websocket_server_host = "****"; //데이터를 보낼 서버의 
-const uint16_t websocket_server_port = ****; // 데이터를 보내 서버의 소켓번호
+const uint16_t websocket_server_port = ****; // 데이터를 보내 서버의 포트번호
 
 using namespace websockets;
 WebsocketsClient client;
@@ -127,3 +127,71 @@ void loop() {
 </code>
 </pre>
 
+### Server code
+-js file code
+Amazon EC2 server에서 실행되고 있는 js 파일로 http://ec2-34-229-114-134.compute-1.amazonaws.com:8000/stream 주소를 입력할 경우 stream.html 파일을 열어서 연결 시켜준다. 그리고 데이터에 변동 사항이 있을 경우 연결되어 있는 모든 client들에게 업데이트 시켜준다.   
+<pre>
+<code>
+const path = require('path');
+const express = require('express');
+const WebSocket = require('ws');
+const app = express();
+
+const WS_PORT  = 8080;
+const HTTP_PORT = 8000;
+
+const wsServer = new WebSocket.Server({port: WS_PORT}, ()=> console.log(`WS stream Server is listening at ${WS_PORT}`));
+
+let connectedClients = [];
+wsServer.on('connection', (ws, req)=>{
+    console.log('Stream server Connected');
+    connectedClients.push(ws);
+
+    ws.on('message', data => {
+        connectedClients.forEach((ws,i)=>{
+            if(ws.readyState === ws.OPEN){
+                ws.send(data);
+            }else{
+                connectedClients.splice(i ,1);
+            }
+        })
+    });
+});
+
+app.get('/stream',(req,res)=>res.sendFile(path.resolve(__dirname, './stream.html')));
+
+app.listen(HTTP_PORT, ()=> console.log(`HTTP server listening at ${HTTP_PORT}`));
+</code>
+</pre>
+   
+   
+--js file code
+js파일에서 열어 주는 html 파일이다. '34.229.114.134' ip주소와 '8080' port번호를 이용해 소켓을 열어서 카메라 센서의 데이터를 받는다.   
+받은 데이터의 형식이 blob형태이기에 이를 image 형태로 변환해준다.
+<pre>
+<code>
+<html>
+    <head>
+        <title>Stream</title>
+    </head>
+    <body>
+        <img src="">
+        <script>
+            const img = document.querySelector('img');
+            const WS_URL = 'ws:///34.229.114.134:8080';
+            const ws = new WebSocket(WS_URL);
+            let urlObject;
+            ws.onopen = () => console.log(`Connected to ${WS_URL}`);
+            ws.onmessage = message => {
+                const arrayBuffer = message.data;
+                if(urlObject){
+                    URL.revokeObjectURL(urlObject);
+                }
+                urlObject = URL.createObjectURL(new Blob([arrayBuffer]));
+                img.src = urlObject;
+            }
+        </script>
+    </body>
+</html>
+</code>
+</pre>
